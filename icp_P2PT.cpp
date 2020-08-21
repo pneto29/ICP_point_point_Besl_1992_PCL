@@ -30,19 +30,19 @@ int main(int argc, char** argv)
     // for(int iteration=1; iteration<iteration+1; iteration++){
     // It is used only to see the ICP convergence curve
         pcl::IterativeClosestPoint<pcl::PointXYZ, pcl::PointXYZ> icp;
-        icp.setInputSource(source_cloud);
-        icp.setInputTarget(target_cloud);
-        icp.setMaximumIterations(iteration);
-        icp.align(*icp_cloud);
+        icp.setInputSource(source_cloud); // rotation cloud
+        icp.setInputTarget(target_cloud); // reference cloud
+        icp.setMaximumIterations(iteration); // number of iterations
+        icp.align(*icp_cloud); // source cloud with corrected pose
 
         Eigen::Matrix4f rotation_matrix = icp.getFinalTransformation();
         //Calculation of final RMSE    
         double rms = computeCloudRMSE(target_cloud, icp_cloud, std::numeric_limits<double>::max());
         //Calculation of rotation after alignment    
-        double elem1 = rotation_matrix(0, 0);
-        double elem2 = rotation_matrix(1, 1);
-        double elem3 = rotation_matrix(2, 2);
-        double angle123 = (elem1 + elem2 + elem3 - 1) / 2.0;
+        double elem1 = rotation_matrix(0, 0); // r_11
+        double elem2 = rotation_matrix(1, 1); // r_22
+        double elem3 = rotation_matrix(2, 2); // r_33
+        double angle123 = (elem1 + elem2 + elem3 - 1) / 2.0; // Axis–angle representation==(sum of the main diagonal - 1)/2
         double rot_angle = (acos(angle123) * 180.0) / PI;
         // rotation matrix
         std::cout << rotation_matrix << std::endl;
