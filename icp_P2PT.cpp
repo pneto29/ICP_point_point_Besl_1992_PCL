@@ -27,8 +27,8 @@ int main(int argc, char** argv)
     }
  int iteration = atoi(argv[3]);
 
-   // for(int iteration=1; iteration<iteration+1; iteration++){
-
+    // for(int iteration=1; iteration<iteration+1; iteration++){
+    // It is used only to see the ICP convergence curve
         pcl::IterativeClosestPoint<pcl::PointXYZ, pcl::PointXYZ> icp;
         icp.setInputSource(source_cloud);
         icp.setInputTarget(target_cloud);
@@ -36,22 +36,25 @@ int main(int argc, char** argv)
         icp.align(*icp_cloud);
 
         Eigen::Matrix4f rotation_matrix = icp.getFinalTransformation();
+        //Calculation of final RMSE    
         double rms = computeCloudRMSE(target_cloud, icp_cloud, std::numeric_limits<double>::max());
+        //Calculation of rotation after alignment    
         double elem1 = rotation_matrix(0, 0);
         double elem2 = rotation_matrix(1, 1);
         double elem3 = rotation_matrix(2, 2);
         double angle123 = (elem1 + elem2 + elem3 - 1) / 2.0;
         double rot_angle = (acos(angle123) * 180.0) / PI;
-
-            std::cout << rotation_matrix << std::endl;
-         std::cout << "RMSE"<< rms << std::endl;
-         std::cout << "rotacao" <<  rot_angle << std::endl;
+        // rotation matrix
+        std::cout << rotation_matrix << std::endl;
+        std::cout << "RMSE"<< rms << std::endl;
+        std::cout << "ANGLE" <<  rot_angle << std::endl;
+        //TIME    
         std::cout << (clock() - tempo) / (double)CLOCKS_PER_SEC << std::endl;
 
 
         int sizePoints = 2;
 
-        //Primeiro view
+        //firts view -> registration results
         boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer (new pcl::visualization::PCLVisualizer ("Pos ICP"));
         viewer->setBackgroundColor(255,255,255);
         viewer->addPointCloud(icp_cloud,"cloud_in");
