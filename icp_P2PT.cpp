@@ -1,3 +1,14 @@
+/*********************************************************************************************************************
+Main Function for point cloud registration with ICP point2pt
+Last modified: August 24, 2020
+
+Reference:
+Besl, Paul J., and Neil D. McKay. "Method for registration of 3-D shapes." 
+Sensor fusion IV: control paradigms and data structures. Vol. 1611. International Society for Optics and Photonics, 1992.
+
+Responsible for implementation: Polycarpo Souza Neto
+Documentation: https://pointclouds.org/documentation/classpcl_1_1_iterative_closest_point.html
+**********************************************************************************************************************/
 #include "validationlib.h"
 
 int main(int argc, char** argv)
