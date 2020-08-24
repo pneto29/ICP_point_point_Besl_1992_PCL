@@ -1,6 +1,6 @@
 # IterativeClosestPoint #
 
-This repository contains an implementation of the Normal Distribution Transform. 
+This repository contains an implementation of the Iterative closest point. 
 
 ## Dependencies ##
 
