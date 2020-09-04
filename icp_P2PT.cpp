@@ -6,7 +6,7 @@ Reference:
 Besl, Paul J., and Neil D. McKay. "Method for registration of 3-D shapes." 
 Sensor fusion IV: control paradigms and data structures. Vol. 1611. International Society for Optics and Photonics, 1992.
 
-Responsible for implementation: Polycarpo Souza Neto
+Responsible for implementation: ***
 Documentation: https://pointclouds.org/documentation/classpcl_1_1_iterative_closest_point.html
 **********************************************************************************************************************/
 #include "validationlib.h"
