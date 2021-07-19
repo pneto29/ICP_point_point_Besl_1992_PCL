@@ -1,6 +1,6 @@
 /**
  * validationlib.h
- * Artur Rodrigues Rocha Neto
+ * 
  * Grouping common functions in reference methods in a single .h
  */
 
